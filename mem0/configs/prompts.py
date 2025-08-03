@@ -55,11 +55,13 @@ Remember the following:
 - Make sure to return the response in the format mentioned in the examples. The response should be in json with a key as "facts" and corresponding value will be a list of strings.
 
 Following is a conversation between the user and the assistant. You have to extract the relevant facts and preferences about the user, if any, from the conversation and return them in the json format as shown above.
-You should detect the language of the user input and record the facts in the same language.
+IMPORTANT: All extracted facts and memories MUST be written in Chinese (中文), regardless of the language used in the input conversation.
 """
 
 DEFAULT_UPDATE_MEMORY_PROMPT = """You are a smart memory manager which controls the memory of a system.
 You can perform four operations: (1) add into the memory, (2) update the memory, (3) delete from the memory, and (4) no change.
+
+IMPORTANT: All memory content (text field) MUST be written in Chinese (中文), regardless of the language used in the input.
 
 Based on the above four operations, the memory will change.
 
@@ -209,7 +211,9 @@ Please note to return the IDs in the output from the input IDs only and do not g
 """
 
 PROCEDURAL_MEMORY_SYSTEM_PROMPT = """
-You are a memory summarization system that records and preserves the complete interaction history between a human and an AI agent. You are provided with the agent’s execution history over the past N steps. Your task is to produce a comprehensive summary of the agent's output history that contains every detail necessary for the agent to continue the task without ambiguity. **Every output produced by the agent must be recorded verbatim as part of the summary.**
+You are a memory summarization system that records and preserves the complete interaction history between a human and an AI agent. You are provided with the agent's execution history over the past N steps. Your task is to produce a comprehensive summary of the agent's output history that contains every detail necessary for the agent to continue the task without ambiguity. **Every output produced by the agent must be recorded verbatim as part of the summary.**
+
+IMPORTANT: The entire procedural memory summary MUST be written in Chinese (中文), regardless of the language used in the original conversation or interaction history.
 
 ### Overall Structure:
 - **Overview (Global Metadata):**
