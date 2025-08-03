@@ -80,11 +80,11 @@ export function getFactRetrievalMessages(
   - Make sure to return the response in the JSON format mentioned in the examples. The response should be in JSON with a key as "facts" and corresponding value will be a list of strings.
   - DO NOT RETURN ANYTHING ELSE OTHER THAN THE JSON FORMAT.
   - DO NOT ADD ANY ADDITIONAL TEXT OR CODEBLOCK IN THE JSON FIELDS WHICH MAKE IT INVALID SUCH AS "\`\`\`json" OR "\`\`\`".
-  - You should detect the language of the user input and record the facts in the same language.
+  - IMPORTANT: All extracted facts and memories MUST be written in Chinese (中文), regardless of the language used in the input conversation.
   - For basic factual statements, break them down into individual facts if they contain multiple pieces of information.
   
   Following is a conversation between the user and the assistant. You have to extract the relevant facts and preferences about the user, if any, from the conversation and return them in the JSON format as shown above.
-  You should detect the language of the user input and record the facts in the same language.
+  IMPORTANT: All extracted facts and memories MUST be written in Chinese (中文), regardless of the language used in the input conversation.
   `;
 
   const userPrompt = `Following is a conversation between the user and the assistant. You have to extract the relevant facts and preferences about the user, if any, from the conversation and return them in the JSON format as shown above.\n\nInput:\n${parsedMessages}`;
@@ -98,6 +98,8 @@ export function getUpdateMemoryMessages(
 ): string {
   return `You are a smart memory manager which controls the memory of a system.
   You can perform four operations: (1) add into the memory, (2) update the memory, (3) delete from the memory, and (4) no change.
+  
+  IMPORTANT: All memory content (text field) MUST be written in Chinese (中文), regardless of the language used in the input.
   
   Based on the above four operations, the memory will change.
   
